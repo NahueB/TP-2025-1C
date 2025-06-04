@@ -51,5 +51,7 @@ void normalizarIcc(char* token);
 void normalizarItm(char* token);
 void selectorIcc(iccClasif* auxClasif);
 void selectorItm(iccClasif* auxClasif);
+int fechaCmp(const void* e1,const void* e2);
+int strCmpM(const void* e1,const void* e2);
 
 #endif // ESTRUCTURAS_H

@@ -1,14 +1,14 @@
 # depslib dependency file v1.0
-1748988323 source:e:\materias\tdp\tps\tp-2025-1c\funciones.c
+1749066335 source:e:\materias\tdp\tps\tp-2025-1c\funciones.c
 	"funciones.h"
 	"vectores.h"
 
-1748988116 e:\materias\tdp\tps\tp-2025-1c\funciones.h
+1749055292 e:\materias\tdp\tps\tp-2025-1c\funciones.h
 	"estructuras.h"
 	"constantes.h"
 	"vectores.h"
 
-1748986682 e:\materias\tdp\tps\tp-2025-1c\estructuras.h
+1749055300 e:\materias\tdp\tps\tp-2025-1c\estructuras.h
 	<stdio.h>
 	<stdlib.h>
 	<stddef.h>
@@ -21,11 +21,11 @@
 	"estructuras.h"
 	"constantes.h"
 
-1749004260 source:e:\materias\tdp\tps\tp-2025-1c\main.c
+1749066355 source:e:\materias\tdp\tps\tp-2025-1c\main.c
 	"funciones.h"
 	"vectores.h"
 
-1748989012 source:e:\materias\tdp\tps\tp-2025-1c\vectores.c
+1749065579 source:e:\materias\tdp\tps\tp-2025-1c\vectores.c
 	"funciones.h"
 	"vectores.h"
 	"estructuras.h"

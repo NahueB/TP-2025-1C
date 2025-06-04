@@ -259,17 +259,108 @@ void selectorItm(iccClasif* auxClasif)
     strcpy(auxClasif->clasificador,"Items");
 }
 
-void merge(tdaV* vecMerge,tdaV* vecClasifIcc,tdaV* vecClasifItm)
+void merge(tdaV* vecMerge,tdaV* vecClasifIcc,tdaV* vecClasifItm,Cmp cmpF,Cmp cmpS)
 {
     void* posIcc = vecClasifIcc->elem;
     void* posItm = vecClasifItm->elem;
     void* ultIcc = vecClasifIcc->elem + (vecClasifIcc->tamElem*(vecClasifIcc->ce - 1));
     void* ultItm = vecClasifItm->elem + (vecClasifItm->tamElem*(vecClasifItm->ce - 1));
-    iccClasif* elemIcc = (iccClasif*)posIcc;
-    iccClasif* elemItm = (iccClasif*)posItm;
-
-    while(posIcc!=ultIcc || posItm!=ultItm)
+    int auxClasif;
+    while(posIcc<=ultIcc && posItm<=ultItm)
     {
-        if()
+        auxClasif = cmpS(posIcc,posItm);
+        if(auxClasif==0)//SON IGUALES
+        {
+            //puts("0");
+            vecInsOrd(vecMerge,posIcc,cmpF);
+            vecInsOrd(vecMerge,posItm,cmpF);
+            posItm+=vecClasifIcc->tamElem;
+            posIcc+=vecClasifItm->tamElem;
+        }
+        if(auxClasif>0)//{posIcc} es mayor
+        {
+            //puts("1");
+
+            if(posIcc!=ultIcc)
+            {
+                vecInsOrd(vecMerge,posIcc,cmpF);
+                posIcc+=vecClasifIcc->tamElem;
+            }
+            else
+            {
+                vecInsOrd(vecMerge,posItm,cmpF);
+                posItm+=vecClasifItm->tamElem;
+            }
+        }
+        if(auxClasif<0)//{posItm} es mayor
+        {
+            //puts("2");
+            if(posItm!=ultItm)
+            {
+                vecInsOrd(vecMerge,posItm,cmpF);
+                posItm+=vecClasifItm->tamElem;
+            }
+
+            else
+            {
+                vecInsOrd(vecMerge,posIcc,cmpF);
+                posIcc+=vecClasifIcc->tamElem;
+            }
+        }
+
     }
+}
+
+int fechaCmp(const void* e1,const void* e2)
+{
+    iccClasif* elem1 = (iccClasif*)e1;
+    iccClasif* elem2 = (iccClasif*)e2;
+    if(elem1->indice.fecha.anio==elem2->indice.fecha.anio)
+    {
+        if(elem1->indice.fecha.mes==elem2->indice.fecha.mes)
+        {
+            if((elem1->indice.fecha.dia-elem2->indice.fecha.dia) == 0)
+                return 1;
+            return elem2->indice.fecha.dia-elem1->indice.fecha.dia;
+        }
+        if((elem1->indice.fecha.mes-elem2->indice.fecha.mes) == 0)
+            return 1;
+        return elem2->indice.fecha.mes-elem1->indice.fecha.mes;
+    }
+    if((elem1->indice.fecha.mes-elem2->indice.fecha.mes) == 0)
+        return 1;
+    return elem2->indice.fecha.anio-elem1->indice.fecha.anio;
+}
+
+//int fechaCmp(const void* e1,const void* e2)
+//{
+//    Fecha* elem1 = (Fecha*)e1;
+//    Fecha* elem2 = (Fecha*)e2;
+//    if(elem1->anio==elem2->anio)
+//    {
+//        if(elem1->mes==elem2->mes)
+//        {
+//            return elem1->dia-elem2->dia;
+//        }
+//        return elem1->mes-elem2->mes;
+//    }
+//    return elem1->anio-elem2->anio;
+//}
+
+int strCmpM(const void* e1,const void* e2)
+{
+    iccClasif* elem1 = (iccClasif*)e1;
+    iccClasif* elem2 = (iccClasif*)e2;
+    char* str1 = elem1->clasificador;
+    char* str2 = elem2->clasificador;
+    while(*str1!='\0' && *str2!='\0' && ((*str1-*str2) == 0))
+    {
+        str1++;
+        str2++;
+    }
+    if(*str1-*str2<0)
+    {
+        return *str2-*str1;
+    }
+    return *str1-*str2;
 }

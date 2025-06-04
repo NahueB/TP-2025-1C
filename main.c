@@ -13,7 +13,7 @@ int main()
         return SIN_MEM;
     if(!vecCrear(&vecItm,sizeof(icc)))
         return SIN_MEM;
-    if(!vecCrear(&vecMerge,sizeof(icc)))
+    if(!vecCrear(&vecMerge,sizeof(iccClasif)))
         return SIN_MEM;
     if(!vecCrear(&vecClasifIcc,sizeof(iccClasif)))
         return SIN_MEM;
@@ -32,11 +32,13 @@ int main()
     }
 
     crearClasificador(&vecIcc,&vecClasifIcc,selectorIcc);
-    crearClasificador(&vecIcc,&vecClasifItm,selectorItm);
+    crearClasificador(&vecItm,&vecClasifItm,selectorItm);
+    merge(&vecMerge,&vecClasifIcc,&vecClasifItm,fechaCmp,strCmpM);
     vecMostrar(&vecIcc,(Imp)mostrarIcc);
     vecMostrar(&vecClasifIcc,(Imp)mostrarIccClasif);
     vecMostrar(&vecItm,(Imp)mostrarItm);
     vecMostrar(&vecClasifItm,(Imp)mostrarIccClasif);
+    vecMostrar(&vecMerge,(Imp)mostrarIccClasif);
 
     vecEliminar(&vecIcc);
     vecEliminar(&vecItm);
