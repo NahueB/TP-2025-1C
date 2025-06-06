@@ -102,5 +102,5 @@ void mostrarItm(const void* elem)
 void mostrarIccClasif(const void* elem)
 {
     const iccClasif* e = elem;
-    printf("%04d-%02d-%02d | %40s | %4.8f | %40s",e->indice.fecha.anio,e->indice.fecha.mes,e->indice.fecha.dia,e->indice.NGyA,e->indice.indice,e->clasificador);
+    printf("%04d-%02d-%02d | %40s | %4.8f | %20s",e->indice.fecha.anio,e->indice.fecha.mes,e->indice.fecha.dia,e->indice.NGyA,e->indice.indice,e->clasificador);
 }

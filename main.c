@@ -34,14 +34,12 @@ int main()
     crearClasificador(&vecIcc,&vecClasifIcc,selectorIcc);
     crearClasificador(&vecItm,&vecClasifItm,selectorItm);
     merge(&vecMerge,&vecClasifIcc,&vecClasifItm,fechaCmp,strCmpM);
-    vecMostrar(&vecIcc,(Imp)mostrarIcc);
-    vecMostrar(&vecClasifIcc,(Imp)mostrarIccClasif);
-    vecMostrar(&vecItm,(Imp)mostrarItm);
-    vecMostrar(&vecClasifItm,(Imp)mostrarIccClasif);
+    // vecMostrar(&vecIcc,(Imp)mostrarIcc);
+    // vecMostrar(&vecClasifIcc,(Imp)mostrarIccClasif);
+    // vecMostrar(&vecItm,(Imp)mostrarItm);
+    // vecMostrar(&vecClasifItm,(Imp)mostrarIccClasif);
     vecMostrar(&vecMerge,(Imp)mostrarIccClasif);
 
-    vecEliminar(&vecIcc);
-    vecEliminar(&vecItm);
     vecEliminar(&vecClasifIcc);
     vecEliminar(&vecClasifItm);
     vecEliminar(&vecMerge);

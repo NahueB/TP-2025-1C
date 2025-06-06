@@ -40,6 +40,10 @@
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="matrices.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="matrices.h" />
 		<Unit filename="vectores.c">
 			<Option compilerVar="CC" />
 		</Unit>

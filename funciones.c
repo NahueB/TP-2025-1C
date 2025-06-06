@@ -204,7 +204,7 @@ void normalizarItm(char* token)
     if(guion != NULL)
     {
         // Quitar todo lo anterior al primer guión bajo
-        memmove(token, guion + 1, strlen(guion));
+        memcpy(auxToken, guion+1, strlen(guion));
         // Quitar todos los guiones bajos posteriores
         char* pos = token;
         while(*pos != '\0')
@@ -244,6 +244,7 @@ void crearClasificador(tdaV *vecInd,tdaV *vecClasif,Selec selector)
         vecInsFin(vecClasif,elem);
         auxInd++;
     }
+    vecEliminar(vecInd);
 }
 
 void selectorIcc(iccClasif* auxClasif)
@@ -271,7 +272,6 @@ void merge(tdaV* vecMerge,tdaV* vecClasifIcc,tdaV* vecClasifItm,Cmp cmpF,Cmp cmp
         auxClasif = cmpS(posIcc,posItm);
         if(auxClasif==0)//SON IGUALES
         {
-            //puts("0");
             vecInsOrd(vecMerge,posIcc,cmpF);
             vecInsOrd(vecMerge,posItm,cmpF);
             posItm+=vecClasifIcc->tamElem;
@@ -279,8 +279,6 @@ void merge(tdaV* vecMerge,tdaV* vecClasifIcc,tdaV* vecClasifItm,Cmp cmpF,Cmp cmp
         }
         if(auxClasif>0)//{posIcc} es mayor
         {
-            //puts("1");
-
             if(posIcc!=ultIcc)
             {
                 vecInsOrd(vecMerge,posIcc,cmpF);
@@ -294,7 +292,6 @@ void merge(tdaV* vecMerge,tdaV* vecClasifIcc,tdaV* vecClasifItm,Cmp cmpF,Cmp cmp
         }
         if(auxClasif<0)//{posItm} es mayor
         {
-            //puts("2");
             if(posItm!=ultItm)
             {
                 vecInsOrd(vecMerge,posItm,cmpF);
@@ -332,21 +329,6 @@ int fechaCmp(const void* e1,const void* e2)
     return elem2->indice.fecha.anio-elem1->indice.fecha.anio;
 }
 
-//int fechaCmp(const void* e1,const void* e2)
-//{
-//    Fecha* elem1 = (Fecha*)e1;
-//    Fecha* elem2 = (Fecha*)e2;
-//    if(elem1->anio==elem2->anio)
-//    {
-//        if(elem1->mes==elem2->mes)
-//        {
-//            return elem1->dia-elem2->dia;
-//        }
-//        return elem1->mes-elem2->mes;
-//    }
-//    return elem1->anio-elem2->anio;
-//}
-
 int strCmpM(const void* e1,const void* e2)
 {
     iccClasif* elem1 = (iccClasif*)e1;
@@ -359,8 +341,8 @@ int strCmpM(const void* e1,const void* e2)
         str2++;
     }
     if(*str1-*str2<0)
-    {
         return *str2-*str1;
-    }
     return *str1-*str2;
 }
+
+

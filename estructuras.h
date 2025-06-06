@@ -17,6 +17,16 @@ typedef struct
 
 typedef struct
 {
+    int ce;
+    int cap;
+    int filas;
+    int columnas;
+    size_t tamElem;
+    void* mat;
+}tdaM;
+
+typedef struct
+{
     int dia;
     int mes;
     int anio;
