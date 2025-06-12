@@ -109,6 +109,13 @@ void mostrarVariacion(const void* elem)
 {
     const variacion* e = elem;
     printf("%04d-%02d-%02d | %40s | %4.8f | %20s",e->indice.indice.fecha.anio,e->indice.indice.fecha.mes,e->indice.indice.fecha.dia,e->indice.indice.NGyA,e->indice.indice.indice,e->indice.clasificador);
-    printf("| %4.2f | %4.2f",e->mensual,e->anual);
+    if(e->mensual != 0)
+        printf("| %4.2f ",e->mensual);
+    else
+        printf("| N/A ");
+    if(e->anual != 0)
+        printf("| %4.2f",e->anual);
+    else
+        printf("| N/A");
 }
 

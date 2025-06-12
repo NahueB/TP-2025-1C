@@ -1,14 +1,14 @@
 # depslib dependency file v1.0
-1749752150 source:e:\materias\tdp\tps\tp-2025-1c\funciones.c
+1749753091 source:e:\materias\tdp\tps\tp-2025-1c\funciones.c
 	"funciones.h"
 	"vectores.h"
 
-1749752143 e:\materias\tdp\tps\tp-2025-1c\funciones.h
+1749753091 e:\materias\tdp\tps\tp-2025-1c\funciones.h
 	"estructuras.h"
 	"constantes.h"
 	"vectores.h"
 
-1749749983 e:\materias\tdp\tps\tp-2025-1c\estructuras.h
+1749753091 e:\materias\tdp\tps\tp-2025-1c\estructuras.h
 	<stdio.h>
 	<stdlib.h>
 	<stddef.h>
@@ -21,21 +21,21 @@
 	"estructuras.h"
 	"constantes.h"
 
-1749750988 source:e:\materias\tdp\tps\tp-2025-1c\main.c
+1749753091 source:e:\materias\tdp\tps\tp-2025-1c\main.c
 	"funciones.h"
 	"vectores.h"
 
-1749750102 source:e:\materias\tdp\tps\tp-2025-1c\vectores.c
+1749753091 source:e:\materias\tdp\tps\tp-2025-1c\vectores.c
 	"funciones.h"
 	"vectores.h"
 	"estructuras.h"
 	"constantes.h"
 
-1749748280 source:e:\materias\tdp\tps\tp-2025-1c\matrices.c
+1749753091 source:e:\materias\tdp\tps\tp-2025-1c\matrices.c
 	"funciones.h"
 	"matrices.h"
 	"estructuras.h"
 	"constantes.h"
 
-1749434280 e:\materias\tdp\tps\tp-2025-1c\matrices.h
+1749753091 e:\materias\tdp\tps\tp-2025-1c\matrices.h
 
