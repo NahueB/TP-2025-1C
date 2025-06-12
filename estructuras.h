@@ -22,7 +22,7 @@ typedef struct
     int filas;
     int columnas;
     size_t tamElem;
-    void* mat;
+    void** mat;
 }tdaM;
 
 typedef struct
@@ -45,6 +45,13 @@ typedef struct
     char clasificador[50];
 }iccClasif;
 
+typedef struct
+{
+    iccClasif indice;
+    float mensual;
+    float anual;
+}variacion;
+
 typedef void (*Imp)(const void*);
 typedef int (*TxtAMem)(char*,void*,void*,void*);
 typedef int (*Cmp)(const void*, const void*);
@@ -54,6 +61,7 @@ typedef void (*Selec)(iccClasif*);
 void mostrarIcc(const void* elem);
 void mostrarItm(const void* elem);
 void mostrarIccClasif(const void* elem);
+void mostrarVariacion(const void* elem);
 int iccTxt(char* linea,void* elem,DspNorm desencriptar,DspNorm normalizar);
 void desencriptarIcc(char* token);
 void desencriptarItm(char* token);

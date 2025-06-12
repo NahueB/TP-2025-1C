@@ -226,12 +226,12 @@ void normalizarItm(char* token)
 void crearClasificador(tdaV *vecInd,tdaV *vecClasif,Selec selector)
 {
     icc *auxInd = vecInd->elem;
-    icc *auxult = vecInd->elem + vecInd->ce * vecInd->tamElem;
+    icc *auxUlt = vecInd->elem + vecInd->ce * vecInd->tamElem;
 
     void* elem = malloc(vecClasif->tamElem);
-    iccClasif* auxClasif = elem;
+    iccClasif *auxClasif = elem;
 
-    while (auxInd < auxult)
+    while (auxInd < auxUlt)
     {
         auxClasif->indice.fecha.anio = auxInd->fecha.anio;
         auxClasif->indice.fecha.mes = auxInd->fecha.mes;
@@ -306,6 +306,67 @@ void merge(tdaV* vecMerge,tdaV* vecClasifIcc,tdaV* vecClasifItm,Cmp cmpF,Cmp cmp
         }
 
     }
+}
+
+void variacionMensual(tdaV *vecMerge,tdaV *vecVariacion)
+{
+    iccClasif *auxMerge = vecMerge->elem;
+    iccClasif *auxUlt = vecMerge->elem + vecMerge->ce * vecMerge->tamElem;
+
+    void* elem = malloc(vecVariacion->tamElem);
+    variacion *auxVariacion = elem;
+    float indiceAnt = 0;
+
+    while(auxMerge < auxUlt)
+    {
+//        puts("1");
+        auxVariacion->indice.indice.fecha.anio = auxMerge->indice.fecha.anio;
+        auxVariacion->indice.indice.fecha.mes = auxMerge->indice.fecha.mes;
+        auxVariacion->indice.indice.fecha.dia = auxMerge->indice.fecha.dia;
+        strcpy (auxVariacion->indice.indice.NGyA,auxMerge->indice.NGyA);
+        auxVariacion->indice.indice.indice= auxMerge->indice.indice;
+        strcpy (auxVariacion->indice.clasificador,auxMerge->clasificador);
+
+        indiceAnt = buscarIndice(vecVariacion,auxMerge->indice.fecha,1,auxMerge->indice.NGyA);
+
+        if(indiceAnt != 0)
+            auxVariacion->mensual = ((auxMerge->indice.indice/indiceAnt)-1)*100;
+        else
+            auxVariacion->mensual = 0;
+
+        indiceAnt = buscarIndice(vecVariacion,auxMerge->indice.fecha,12,auxMerge->indice.NGyA);
+
+        if(indiceAnt != 0)
+            auxVariacion->anual = ((auxMerge->indice.indice/indiceAnt)-1)*100;
+        else
+            auxVariacion->anual = 0;
+
+        vecInsFin(vecVariacion,elem);
+        auxMerge++;
+    }
+
+    vecEliminar(vecMerge);
+}
+
+float buscarIndice(tdaV* vec,Fecha periodo,int resta,char* NGyA)
+{
+    periodo.mes-=resta;
+    if(periodo.mes<=0)
+    {
+        periodo.anio-=1;
+        periodo.mes+=12;
+    }
+
+    variacion *auxVariacion = vec->elem;
+    variacion *auxUlt = vec->elem + vec->ce * vec->tamElem;
+
+    while(auxVariacion < auxUlt)
+    {
+        if((auxVariacion->indice.indice.fecha.mes == periodo.mes) && (auxVariacion->indice.indice.fecha.anio == periodo.anio) && (strcmp(auxVariacion->indice.indice.NGyA,NGyA) == 0))
+            return auxVariacion->indice.indice.indice;
+        auxVariacion++;
+    }
+    return 0;
 }
 
 int fechaCmp(const void* e1,const void* e2)

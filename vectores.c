@@ -104,3 +104,11 @@ void mostrarIccClasif(const void* elem)
     const iccClasif* e = elem;
     printf("%04d-%02d-%02d | %40s | %4.8f | %20s",e->indice.fecha.anio,e->indice.fecha.mes,e->indice.fecha.dia,e->indice.NGyA,e->indice.indice,e->clasificador);
 }
+
+void mostrarVariacion(const void* elem)
+{
+    const variacion* e = elem;
+    printf("%04d-%02d-%02d | %40s | %4.8f | %20s",e->indice.indice.fecha.anio,e->indice.indice.fecha.mes,e->indice.indice.fecha.dia,e->indice.indice.NGyA,e->indice.indice.indice,e->indice.clasificador);
+    printf("| %4.2f | %4.2f",e->mensual,e->anual);
+}
+
